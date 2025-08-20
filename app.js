@@ -8,11 +8,16 @@ const server = http.createServer(app)
 
 const io= socketio(server)
 
+const path=require("path")
 app.set("view engine","ejs");
 app.set(express.static(path.join(__dirname,"public")));
 
+io.on("connection",(socket)=>{
+    console.log("connected");  
+})
+
 app.get('/',(req,res)=>{
-res.send("hello");
+res.render("index");
 })
 
 server.listen(3000,()=>{
